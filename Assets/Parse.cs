@@ -7,7 +7,9 @@ public class Parse : MonoBehaviour
 {
     public GameObject check;
     public GameObject currcheck;
+    
     List<GameObject> checkpoints;
+    int currindex;
     
     
     // Start is called before the first frame update
@@ -17,6 +19,8 @@ public class Parse : MonoBehaviour
         //transform.localScale=transform.localScale*0.02564103f;
         checkpoints = placeCheckpoints(coords);
         currcheck = checkpoints[0];
+        currindex = 0;
+
         
           
         
@@ -25,12 +29,12 @@ public class Parse : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
     List<Vector3> ParseFile()
     {
-        //float ScaleFactor = 0.02564103f;
-        float ScaleFactor = 1f;
+        float ScaleFactor = 0.02564103f;
+        
         List<Vector3> positions = new List<Vector3>();
         string content = System.IO.File.ReadAllText("Assets/Sample-track.txt");
         string[] lines = content.Split('\n');
@@ -60,5 +64,11 @@ public class Parse : MonoBehaviour
 
         }
         return checks;
+    }
+    public void next()
+    {
+        currindex += 1;
+        currcheck.SetActive(false);
+        currcheck = checkpoints[currindex];
     }
 }
