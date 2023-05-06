@@ -55,7 +55,7 @@ public class Parse : MonoBehaviour
     List<GameObject> placeCheckpoints(List<Vector3> coords)
     {
         List<GameObject> checks = new List<GameObject>();
-        GameObject.Find("OVRCameraRig").transform.position = coords[0];
+        GameObject.Find("Aircraft").transform.position = coords[0];
            for(int i = 0; i < coords.Count; i++)
         {
             GameObject prefab = Instantiate(check,coords[i], new Quaternion(0, 0, 0, 1));
