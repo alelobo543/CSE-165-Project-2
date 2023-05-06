@@ -15,11 +15,11 @@ public class HandMovement : MonoBehaviour
     {
         Quaternion rightHandRotation = OVRInput.GetLocalControllerRotation(OVRInput.Controller.RTouch);
         float pitch = Mathf.Clamp(rightHandRotation.eulerAngles.x, -90f, 90f);
-        float yaw = rightHandRotation.eulerAngles.y;
-        float roll = -Mathf.Clamp(rightHandRotation.eulerAngles.z, -90f, 90f);
 
-        // apply the pitch, yaw, and roll to the plane object
-        transform.rotation = Quaternion.Euler(pitch * 1.25f, yaw * 1.25f, roll * 1.25f);
+        float roll = Mathf.Clamp(rightHandRotation.eulerAngles.z, -90f, 90f);
+
+        // apply the pitch and roll to the plane object
+        transform.rotation = Quaternion.Euler(pitch * 1.1f * Time.deltaTime, transform.rotation.y, roll * 1.1f * Time.deltaTime);
         transform.GetComponent<Rigidbody>().velocity = transform.forward * 2;
     }
 }
