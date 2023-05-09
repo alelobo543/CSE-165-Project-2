@@ -2,14 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using TMPro;
 
 public class Parse : MonoBehaviour
 {
     public GameObject check;
     public GameObject currcheck;
     
-    List<GameObject> checkpoints;
-    int currindex;
+    public List<GameObject> checkpoints;
+    public int currindex;
     
     
     // Start is called before the first frame update
@@ -60,6 +61,9 @@ public class Parse : MonoBehaviour
         {
             GameObject prefab = Instantiate(check,coords[i], new Quaternion(0, 0, 0, 1));
             prefab.transform.Rotate(-90, 0, 0);
+            prefab.transform.GetChild(0).GetComponent<TMPro.TextMeshPro>().text = "#" + i.ToString();
+            prefab.transform.GetChild(0).transform.LookAt(Camera.main.transform);
+            prefab.transform.GetChild(0).transform.Rotate(0, 180, 0);
             checks.Add(prefab);
 
         }
