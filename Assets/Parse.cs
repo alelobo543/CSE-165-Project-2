@@ -29,14 +29,18 @@ public class Parse : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (currcheck == checkpoints[0])
+        {
+            GameObject.Find("Aircraft").transform.position = currcheck.transform.position;
+        }
 
     }
     List<Vector3> ParseFile()
     {
         float ScaleFactor = 0.02564103f;
-        
+        TextAsset file = Resources.Load("Sample-track") as TextAsset;
+        string content = file.text;
         List<Vector3> positions = new List<Vector3>();
-        string content = System.IO.File.ReadAllText("Assets/Sample-track.txt");
         string[] lines = content.Split('\n');
         for (int i = 0; i < lines.Length; i++)
         {
