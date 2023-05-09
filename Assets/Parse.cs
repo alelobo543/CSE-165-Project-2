@@ -8,7 +8,6 @@ public class Parse : MonoBehaviour
 {
     public GameObject check;
     public GameObject currcheck;
-    
     public List<GameObject> checkpoints;
     public int currindex;
     
@@ -30,10 +29,7 @@ public class Parse : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (currcheck == checkpoints[0])
-        {
-            GameObject.Find("Aircraft").transform.position = currcheck.transform.position;
-        }
+
 
     }
     List<Vector3> ParseFile()

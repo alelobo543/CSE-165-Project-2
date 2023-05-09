@@ -8,6 +8,7 @@ public class HandMovement : MonoBehaviour
     public float rollSpeed = 10f; // Adjust this value to change the roll speed
     public float pitchSpeed = 10f; // Adjust this value to change the pitch speed
     public OVRHand rightHand;
+    public OVRHand leftHand;
     private Vector3 startPosition;
     public float rotationSpeed = 2.0f;
     public float maxPitch = 45.0f;
@@ -47,11 +48,11 @@ public class HandMovement : MonoBehaviour
         {
             transform.Rotate(Vector3.right, -30 * Time.deltaTime, Space.Self);
         }
-        if (rightHand.GetFingerIsPinching(OVRHand.HandFinger.Ring) || Input.GetKey(KeyCode.M))
+        if (leftHand.GetFingerIsPinching(OVRHand.HandFinger.Index) || Input.GetKey(KeyCode.M))
         {
             transform.Rotate(Vector3.forward, 30 * Time.deltaTime, Space.Self);
         }
-        if (rightHand.GetFingerIsPinching(OVRHand.HandFinger.Pinky) || Input.GetKey(KeyCode.L))
+        if (leftHand.GetFingerIsPinching(OVRHand.HandFinger.Middle) || Input.GetKey(KeyCode.L))
         {
             transform.Rotate(Vector3.forward, -30 * Time.deltaTime, Space.Self);
         }
