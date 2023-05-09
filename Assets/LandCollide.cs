@@ -21,7 +21,7 @@ public class LandCollide : MonoBehaviour
         if (col.gameObject == GameObject.Find("Aircraft"))
         {
             GameObject.Find("Aircraft").transform.position= GameObject.Find("engineering-campus").GetComponent<Parse>().checkpoints[GameObject.Find("engineering-campus").GetComponent<Parse>().currindex-1].transform.position;
-            GameObject.Find("Aircraft").transform.rotation = Quaternion.identity;
+            GameObject.Find("Aircraft").transform.LookAt(GameObject.Find("engineering-campus").GetComponent<Parse>().currcheck.transform);
         }
 
     }

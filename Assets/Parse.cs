@@ -19,6 +19,7 @@ public class Parse : MonoBehaviour
         //transform.localScale=transform.localScale*0.02564103f;
         checkpoints = placeCheckpoints(coords);
         currcheck = checkpoints[0];
+        GameObject.Find("Aircraft").transform.LookAt(currcheck.transform);
         currindex = 0;
 
         
