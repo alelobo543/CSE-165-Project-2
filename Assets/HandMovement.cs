@@ -29,7 +29,7 @@ public class HandMovement : MonoBehaviour
 
         // apply the hand rotation to the aircraft object
         
-        Quaternion rightHandRotation = GameObject.Find("RightHandAnchor").transform.localRotation;
+        
         /*float pitch = Mathf.Clamp(rightHandRotation.eulerAngles.x, -5f, 5f);
         float roll = Mathf.Clamp(rightHandRotation.eulerAngles.z, -5f, 5f);
         
@@ -43,11 +43,11 @@ public class HandMovement : MonoBehaviour
         if (rightHand.GetFingerIsPinching(OVRHand.HandFinger.Index)){
             transform.Rotate(Vector3.right, 30 * Time.deltaTime, Space.Self);
         }
-        if (rightHand.GetFingerIsPinching(OVRHand.HandFinger.Ring))
+        if (rightHand.GetFingerIsPinching(OVRHand.HandFinger.Middle))
         {
             transform.Rotate(Vector3.right, -30 * Time.deltaTime, Space.Self);
         }
-        if (rightHand.GetFingerIsPinching(OVRHand.HandFinger.Middle) || Input.GetKey(KeyCode.M))
+        if (rightHand.GetFingerIsPinching(OVRHand.HandFinger.Ring) || Input.GetKey(KeyCode.M))
         {
             transform.Rotate(Vector3.forward, 30 * Time.deltaTime, Space.Self);
         }
@@ -57,6 +57,6 @@ public class HandMovement : MonoBehaviour
         }
 
         // set the velocity of the aircraft object
-        transform.GetComponent<Rigidbody>().velocity = transform.forward * 4;
+        transform.GetComponent<Rigidbody>().velocity = transform.forward * 10;
     }
 }
