@@ -21,10 +21,15 @@ public class Parse : MonoBehaviour
         currcheck = checkpoints[0];
         GameObject.Find("Aircraft").transform.LookAt(currcheck.transform);
         currindex = 0;
+        
+        GameObject.Find("Aircraft").transform.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
+        GameObject.Find("Aircraft").transform.GetComponent<Rigidbody>().angularVelocity = new Vector3(0, 0, 0);
+        Quaternion r = GameObject.Find("Aircraft").transform.rotation;
+        GameObject.Find("Aircraft").transform.Rotate(-r.eulerAngles.x, 0, -r.eulerAngles.z);
 
-        
-          
-        
+
+
+
     }
 
     // Update is called once per frame
