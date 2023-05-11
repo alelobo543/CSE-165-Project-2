@@ -43,25 +43,26 @@ public class HandMovement : MonoBehaviour
         */
         if (timer.canMove)
         {
-            if (rightHand.GetFingerIsPinching(OVRHand.HandFinger.Index))
+            if(rightHand.GetFingerPinchStrength(OVRHand.HandFinger.Index) >= 0.7f)
             {
-                transform.Rotate(Vector3.right, 30 * Time.deltaTime, Space.Self);
+                transform.Rotate(Vector3.right, 40 * Time.deltaTime, Space.Self);
             }
-            if (rightHand.GetFingerIsPinching(OVRHand.HandFinger.Middle))
+
+            if (rightHand.GetFingerPinchStrength(OVRHand.HandFinger.Ring) >= 0.7f)
             {
-                transform.Rotate(Vector3.right, -30 * Time.deltaTime, Space.Self);
+                transform.Rotate(Vector3.right, -40 * Time.deltaTime, Space.Self);
             }
-            if (leftHand.GetFingerIsPinching(OVRHand.HandFinger.Index) || Input.GetKey(KeyCode.M))
+            if (leftHand.GetFingerPinchStrength(OVRHand.HandFinger.Index) >= 0.7f || Input.GetKey(KeyCode.M))
             {
-                transform.Rotate(Vector3.forward, 30 * Time.deltaTime, Space.Self);
+                transform.Rotate(Vector3.forward, 40 * Time.deltaTime, Space.Self);
             }
-            if (leftHand.GetFingerIsPinching(OVRHand.HandFinger.Middle) || Input.GetKey(KeyCode.L))
+            if (leftHand.GetFingerPinchStrength(OVRHand.HandFinger.Ring) >= 0.7f || Input.GetKey(KeyCode.L))
             {
-                transform.Rotate(Vector3.forward, -30 * Time.deltaTime, Space.Self);
+                transform.Rotate(Vector3.forward, -40 * Time.deltaTime, Space.Self);
             }
 
             // set the velocity of the aircraft object
-            transform.GetComponent<Rigidbody>().velocity = transform.forward * 10;
+            transform.GetComponent<Rigidbody>().velocity = transform.forward * 30;
         }
     }
 }

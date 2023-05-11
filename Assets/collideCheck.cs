@@ -21,6 +21,7 @@ public class collideCheck : MonoBehaviour
         if (col.gameObject == GameObject.Find("engineering-campus").GetComponent<Parse>().currcheck)
         {
             GameObject.Find("engineering-campus").GetComponent<Parse>().next();
+            GameObject.Find("Aircraft").transform.GetComponent<Rigidbody>().angularVelocity = new Vector3(0, 0, 0);
         }
 
     }
