@@ -14,7 +14,7 @@ public class HandMovement : MonoBehaviour
     public float maxPitch = 45.0f;
     public float maxRoll = 45.0f;
     float velocity = 1f;
-
+    public TimerScript timer;
     private Quaternion initialRotation;
     private float initialHandRoll;
     void Start()
@@ -29,8 +29,8 @@ public class HandMovement : MonoBehaviour
     {
 
         // apply the hand rotation to the aircraft object
-        
-        
+
+
         /*float pitch = Mathf.Clamp(rightHandRotation.eulerAngles.x, -5f, 5f);
         float roll = Mathf.Clamp(rightHandRotation.eulerAngles.z, -5f, 5f);
         
@@ -41,23 +41,27 @@ public class HandMovement : MonoBehaviour
         Quaternion targetRotation = Quaternion.Euler(-handLocalPos.y, handLocalPos.x, 0f); // calculate the target rotation based on the local position of the hand
         transform.localRotation = targetRotation; // apply the rotation to the aircraft
         */
-        if (rightHand.GetFingerIsPinching(OVRHand.HandFinger.Index)){
-            transform.Rotate(Vector3.right, 30 * Time.deltaTime, Space.Self);
-        }
-        if (rightHand.GetFingerIsPinching(OVRHand.HandFinger.Middle))
+        if (timer.canMove)
         {
-            transform.Rotate(Vector3.right, -30 * Time.deltaTime, Space.Self);
-        }
-        if (leftHand.GetFingerIsPinching(OVRHand.HandFinger.Index) || Input.GetKey(KeyCode.M))
-        {
-            transform.Rotate(Vector3.forward, 30 * Time.deltaTime, Space.Self);
-        }
-        if (leftHand.GetFingerIsPinching(OVRHand.HandFinger.Middle) || Input.GetKey(KeyCode.L))
-        {
-            transform.Rotate(Vector3.forward, -30 * Time.deltaTime, Space.Self);
-        }
+            if (rightHand.GetFingerIsPinching(OVRHand.HandFinger.Index))
+            {
+                transform.Rotate(Vector3.right, 30 * Time.deltaTime, Space.Self);
+            }
+            if (rightHand.GetFingerIsPinching(OVRHand.HandFinger.Middle))
+            {
+                transform.Rotate(Vector3.right, -30 * Time.deltaTime, Space.Self);
+            }
+            if (leftHand.GetFingerIsPinching(OVRHand.HandFinger.Index) || Input.GetKey(KeyCode.M))
+            {
+                transform.Rotate(Vector3.forward, 30 * Time.deltaTime, Space.Self);
+            }
+            if (leftHand.GetFingerIsPinching(OVRHand.HandFinger.Middle) || Input.GetKey(KeyCode.L))
+            {
+                transform.Rotate(Vector3.forward, -30 * Time.deltaTime, Space.Self);
+            }
 
-        // set the velocity of the aircraft object
-        transform.GetComponent<Rigidbody>().velocity = transform.forward * 10;
+            // set the velocity of the aircraft object
+            transform.GetComponent<Rigidbody>().velocity = transform.forward * 10;
+        }
     }
 }
