@@ -21,6 +21,7 @@ public class TimerScript : MonoBehaviour
     {
         if(timerOn)
         {
+            timer.enabled = true;
             canMove = false;
             if(currTime > 0)
             {
@@ -37,6 +38,7 @@ public class TimerScript : MonoBehaviour
             }
             else
             {
+                currTime = 0;
                 timer.enabled = false;
                 timerOn = false;
             }
