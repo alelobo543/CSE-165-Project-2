@@ -28,19 +28,7 @@ public class HandMovement : MonoBehaviour
     void Update()
     {
 
-        // apply the hand rotation to the aircraft object
 
-
-        /*float pitch = Mathf.Clamp(rightHandRotation.eulerAngles.x, -5f, 5f);
-        float roll = Mathf.Clamp(rightHandRotation.eulerAngles.z, -5f, 5f);
-        
-        transform.rotation = Quaternion.Euler(0f, rightHandRotation.eulerAngles.y, 0f);
-        transform.Rotate(pitch, 0f, roll, Space.Self);
-        
-        Vector3 handLocalPos = GameObject.Find("RightHandAnchor").transform.localPosition; // get the local position of the hand
-        Quaternion targetRotation = Quaternion.Euler(-handLocalPos.y, handLocalPos.x, 0f); // calculate the target rotation based on the local position of the hand
-        transform.localRotation = targetRotation; // apply the rotation to the aircraft
-        */
         if (timer.canMove)
         {
             if(rightHand.GetFingerPinchStrength(OVRHand.HandFinger.Index) >= 0.72f)
@@ -61,11 +49,7 @@ public class HandMovement : MonoBehaviour
                 transform.Rotate(Vector3.forward, -85 * Time.deltaTime, Space.Self);
             }
 
-            /*
-            if(rightHand.
-            */
-            Debug.Log(rightHand.transform.forward);
-            // set the velocity of the aircraft object
+ 
             transform.GetComponent<Rigidbody>().velocity = transform.forward * 25;
         }
     }
