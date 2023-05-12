@@ -19,7 +19,8 @@ public class Parse : MonoBehaviour
         //transform.localScale=transform.localScale*0.02564103f;
         checkpoints = placeCheckpoints(coords);
         currcheck = checkpoints[0];
-        GameObject.Find("Aircraft").transform.LookAt(currcheck.transform);
+        currcheck.transform.GetComponent<Collider>().enabled = true;
+        GameObject.Find("Aircraft").transform.LookAt(checkpoints[1].transform);
         currindex = 0;
         
         GameObject.Find("Aircraft").transform.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
@@ -35,12 +36,10 @@ public class Parse : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-
     }
     List<Vector3> ParseFile()
     {
-        float ScaleFactor = 0.02564103f;
+        float ScaleFactor = 1.0f / 39.37f;
         TextAsset file = Resources.Load("Sample-track") as TextAsset;
         string content = file.text;
         List<Vector3> positions = new List<Vector3>();
@@ -67,6 +66,7 @@ public class Parse : MonoBehaviour
         {
             GameObject prefab = Instantiate(check,coords[i], new Quaternion(0, 0, 0, 1));
             prefab.transform.Rotate(-90, 0, 0);
+            prefab.transform.GetComponent<Collider>().enabled=false;
             prefab.transform.GetChild(0).GetComponent<TMPro.TextMeshPro>().text = "#" + i.ToString();
             prefab.transform.GetChild(0).transform.LookAt(Camera.main.transform);
             prefab.transform.GetChild(0).transform.Rotate(0, 180, 0);
@@ -79,6 +79,9 @@ public class Parse : MonoBehaviour
     {
         currindex += 1;
         currcheck.SetActive(false);
-        currcheck = checkpoints[currindex];
+        if(currindex < checkpoints.Count){
+            currcheck = checkpoints[currindex];
+            currcheck.transform.GetComponent<Collider>().enabled=true;
+        }
     }
 }

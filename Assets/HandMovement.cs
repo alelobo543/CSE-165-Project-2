@@ -43,26 +43,30 @@ public class HandMovement : MonoBehaviour
         */
         if (timer.canMove)
         {
-            if(rightHand.GetFingerPinchStrength(OVRHand.HandFinger.Index) >= 0.7f)
+            if(rightHand.GetFingerPinchStrength(OVRHand.HandFinger.Index) >= 0.72f)
             {
-                transform.Rotate(Vector3.right, 40 * Time.deltaTime, Space.Self);
+                transform.Rotate(Vector3.right, 85 * Time.deltaTime, Space.Self);
             }
 
-            if (rightHand.GetFingerPinchStrength(OVRHand.HandFinger.Ring) >= 0.7f)
+            if (rightHand.GetFingerPinchStrength(OVRHand.HandFinger.Ring) >= 0.72f)
             {
-                transform.Rotate(Vector3.right, -40 * Time.deltaTime, Space.Self);
+                transform.Rotate(Vector3.right, -85 * Time.deltaTime, Space.Self);
             }
-            if (leftHand.GetFingerPinchStrength(OVRHand.HandFinger.Index) >= 0.7f || Input.GetKey(KeyCode.M))
+            if (leftHand.GetFingerPinchStrength(OVRHand.HandFinger.Index) >= 0.72f || Input.GetKey(KeyCode.M))
             {
-                transform.Rotate(Vector3.forward, 40 * Time.deltaTime, Space.Self);
+                transform.Rotate(Vector3.forward, 85 * Time.deltaTime, Space.Self);
             }
-            if (leftHand.GetFingerPinchStrength(OVRHand.HandFinger.Ring) >= 0.7f || Input.GetKey(KeyCode.L))
+            if (leftHand.GetFingerPinchStrength(OVRHand.HandFinger.Ring) >= 0.72f || Input.GetKey(KeyCode.L))
             {
-                transform.Rotate(Vector3.forward, -40 * Time.deltaTime, Space.Self);
+                transform.Rotate(Vector3.forward, -85 * Time.deltaTime, Space.Self);
             }
 
+            /*
+            if(rightHand.
+            */
+            Debug.Log(rightHand.transform.forward);
             // set the velocity of the aircraft object
-            transform.GetComponent<Rigidbody>().velocity = transform.forward * 30;
+            transform.GetComponent<Rigidbody>().velocity = transform.forward * 25;
         }
     }
 }

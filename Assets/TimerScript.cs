@@ -6,6 +6,7 @@ public class TimerScript : MonoBehaviour
 {
     public float currTime;
     public bool timerOn = false;
+    public bool start;
     public bool canMove = true;
     public TMPro.TextMeshPro timer;
     // Start is called before the first frame update
@@ -14,6 +15,7 @@ public class TimerScript : MonoBehaviour
         currTime = 4;
         timerOn = true;
         canMove= false;
+        start=true;
     }
 
     // Update is called once per frame
@@ -41,11 +43,9 @@ public class TimerScript : MonoBehaviour
                 currTime = 0;
                 timer.enabled = false;
                 timerOn = false;
+                start=false;
+                canMove = true;
             }
-        }
-        else
-        {
-            canMove = true;
         }
     }
 
